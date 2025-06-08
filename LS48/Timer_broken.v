@@ -35,7 +35,7 @@ module Timer(
     reg [2:0] freq_sel;    // 频率选择 0=1Hz, 1=2Hz, 2=4Hz
     reg precision_mode;    // 精度模式 0=秒, 1=0.1秒
     
-    // 按键边沿检测 - 使用固定时钟
+    // 按键边沿检测
     reg key0_last, key1_last, key2_last, key4_last, key5_last, key6_last;
     wire key0_up, key1_up, key2_up, key4_up, key5_up, key6_up;
     
@@ -53,42 +53,33 @@ module Timer(
     assign point = point_reg;
     assign led = led_reg;
     
-    // 时钟选择逻辑 - 添加默认值避免X态
-    assign selected_clk = (!rst_n) ? clk_1hz :
-                         precision_mode ? cnt_10hz :
-                         (freq_sel == 3'd1) ? cnt_2hz :
-                         (freq_sel == 3'd2) ? cnt_4hz : clk_1hz;
+    // 时钟选择逻辑
+    assign selected_clk = precision_mode ? cnt_10hz :
+                         (freq_sel == 0) ? clk_1hz :
+                         (freq_sel == 1) ? cnt_2hz :
+                         (freq_sel == 2) ? cnt_4hz : clk_1hz;
     
-    // 按键边沿检测 - 使用1Hz时钟避免时钟域问题
-    always @(posedge clk_1hz or negedge rst_n) begin
-        if (!rst_n) begin
-            key0_last <= 1'b1;
-            key1_last <= 1'b1;
-            key2_last <= 1'b1;
-            key4_last <= 1'b1;
-            key5_last <= 1'b1;
-            key6_last <= 1'b1;
-        end else begin
-            key0_last <= key0;
-            key1_last <= key1;
-            key2_last <= key2;
-            key4_last <= key4;
-            key5_last <= key5;
-            key6_last <= key6;
-        end
+    // 按键边沿检测
+    always @(posedge selected_clk) begin
+        key0_last <= key0;
+        key1_last <= key1;
+        key2_last <= key2;
+        key4_last <= key4;
+        key5_last <= key5;
+        key6_last <= key6;
     end
     
-    assign key0_up = (!key0) && key0_last;  // 检测下降沿（按键按下）
-    assign key1_up = (!key1) && key1_last;
-    assign key2_up = (!key2) && key2_last;
-    assign key4_up = (!key4) && key4_last;
-    assign key5_up = (!key5) && key5_last;
-    assign key6_up = (!key6) && key6_last;
+    assign key0_up = key0 && (!key0_last);
+    assign key1_up = key1 && (!key1_last);
+    assign key2_up = key2 && (!key2_last);
+    assign key4_up = key4 && (!key4_last);
+    assign key5_up = key5 && (!key5_last);
+    assign key6_up = key6 && (!key6_last);
     
     // 主控制逻辑
     always @(posedge selected_clk or negedge rst_n) begin
         if (!rst_n) begin
-            // 复位状态 - 完整初始化
+            // 复位状态
             tens_reg <= 4'd0;
             ones_reg <= 4'd0;
             xiaoshu_reg <= 4'd0;
@@ -109,7 +100,7 @@ module Timer(
             led_reg <= 1'b0;
             running <= 1'b0;
         end else begin
-            // 按键处理 - 在1Hz时钟域检测
+            // 按键处理
             
             // KEY0: 启动正计时（秒表）
             if (key0_up) begin
@@ -150,7 +141,7 @@ module Timer(
             
             // KEY5: 切换计时频率
             if (key5_up) begin
-                freq_sel <= (freq_sel >= 3'd2) ? 3'd0 : freq_sel + 1;
+                freq_sel <= (freq_sel >= 2) ? 3'd0 : freq_sel + 1;
             end
             
             // KEY6: 切换精度显示
@@ -165,15 +156,15 @@ module Timer(
                     // 正计时模式（秒表）
                     if (precision_mode) begin
                         // 0.1秒精度
-                        if (xiaoshu_reg < 4'd9) begin
+                        if (xiaoshu_reg < 9) begin
                             xiaoshu_reg <= xiaoshu_reg + 1;
                         end else begin
                             xiaoshu_reg <= 4'd0;
-                            if (ones_reg < 4'd9) begin
+                            if (ones_reg < 9) begin
                                 ones_reg <= ones_reg + 1;
                             end else begin
                                 ones_reg <= 4'd0;
-                                if (tens_reg < 4'd5) begin
+                                if (tens_reg < 5) begin
                                     tens_reg <= tens_reg + 1;
                                 end else begin
                                     tens_reg <= 4'd0;  // 60秒后重新开始
@@ -183,11 +174,11 @@ module Timer(
                     end else begin
                         // 1秒精度
                         xiaoshu_reg <= 4'd0;
-                        if (ones_reg < 4'd9) begin
+                        if (ones_reg < 9) begin
                             ones_reg <= ones_reg + 1;
                         end else begin
                             ones_reg <= 4'd0;
-                            if (tens_reg < 4'd5) begin
+                            if (tens_reg < 5) begin
                                 tens_reg <= tens_reg + 1;
                             end else begin
                                 tens_reg <= 4'd0;  // 60秒后重新开始
@@ -198,15 +189,15 @@ module Timer(
                     // 倒计时模式（定时器）
                     if (precision_mode) begin
                         // 0.1秒精度
-                        if (xiaoshu_reg > 4'd0) begin
+                        if (xiaoshu_reg > 0) begin
                             xiaoshu_reg <= xiaoshu_reg - 1;
                         end else begin
                             xiaoshu_reg <= 4'd9;
-                            if (ones_reg > 4'd0) begin
+                            if (ones_reg > 0) begin
                                 ones_reg <= ones_reg - 1;
                             end else begin
                                 ones_reg <= 4'd9;
-                                if (tens_reg > 4'd0) begin
+                                if (tens_reg > 0) begin
                                     tens_reg <= tens_reg - 1;
                                 end else begin
                                     // 倒计时结束
@@ -220,11 +211,11 @@ module Timer(
                     end else begin
                         // 1秒精度
                         xiaoshu_reg <= 4'd0;
-                        if (ones_reg > 4'd0) begin
+                        if (ones_reg > 0) begin
                             ones_reg <= ones_reg - 1;
                         end else begin
                             ones_reg <= 4'd9;
-                            if (tens_reg > 4'd0) begin
+                            if (tens_reg > 0) begin
                                 tens_reg <= tens_reg - 1;
                             end else begin
                                 // 倒计时结束
@@ -236,9 +227,9 @@ module Timer(
                     end
                     
                     // LED闪烁逻辑（倒计时模式下时间<8秒时）
-                    if (tens_reg == 4'd0 && ones_reg < 4'd8) begin
+                    if (tens_reg == 0 && ones_reg < 8) begin
                         led_count <= led_count + 1;
-                        if (led_count >= 4'd4) begin  // 每0.4秒切换一次
+                        if (led_count >= 4) begin  // 每0.4秒切换一次
                             led_count <= 4'd0;
                             led_toggle <= ~led_toggle;
                             led_reg <= led_toggle;

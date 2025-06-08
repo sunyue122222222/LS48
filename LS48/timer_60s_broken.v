@@ -33,7 +33,7 @@ module timer_60s (
     // 复位信号处理
     assign rst_internal = rst | (~rst_n);
     
-    // 时钟分频器实例 - 确保使用仿真模式
+    // 时钟分频器实例
     clk_divider #(.SIM_MODE(1)) u_clk_divider (
         .clk_50M(clk_50M),
         .rst_n(~rst_internal),
