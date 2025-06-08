@@ -25,7 +25,7 @@ reg mode;//正计时还是倒计时
 reg running;//暂停还是不暂停
 reg [2:0]count=0;
 reg [1:0]count1=0;
-wire clk=0;
+wire clk;
 reg key5_last;
 reg key6_last;
 reg key0_last;
@@ -98,10 +98,10 @@ always@(posedge clk)begin
   if(!key0&!key1)begin
       remark0<=0;
       remark1<=0;
-      running=0;
+      running<=0;
   end  
   if(remark1)begin
-       running=1;
+       running<=1;
        mode<=1;
   end
   if(remark0) begin
@@ -109,19 +109,19 @@ always@(posedge clk)begin
        running<=1;
   end
   if(!key4&!pause&(!key0&!key1))begin 
-     mode=1;
-     tens1=ten;
-     ones1=one;
-     running=0;
+     mode<=1;
+     tens1<=ten;
+     ones1<=one;
+     running<=0;
   end else if(key4&!pause)begin
-      running=1;
+      running<=1;
   end else if((key4&pause)||(!key4&pause))begin
-      running=0;
+      running<=0;
   end
    if(!key2)begin
-    mode=0;
+    mode<=0;
   end else if(key2) begin
-    mode=1;
+    mode<=1;
   end
   if(key5_up)begin
         count<=count+1;
@@ -157,7 +157,7 @@ always@(posedge clk)begin
                    end
                   
             end else if(!(count1==1))  begin  //没有精度
-                point1=0;xiaoshu1=0;
+                point1<=0;xiaoshu1<=0;
                 if(ones1<9)begin
                    ones1 <= ones1 + 1;
                 end else begin
@@ -189,16 +189,16 @@ always@(posedge clk)begin
                    end
             end else if(!(count1==1))begin
                  xiaoshu1<=0;
-                 point1=0;
+                 point1<=0;
                   if (ones1 > 0) begin
                     ones1 <= ones1 - 1;
                     if(tens1==0&&ones1<8&&key4) begin
-                         led1=~led1;
+                         led1<=~led1;
                          if(led1)begin
                          count2<=count2+1;
                          if(count2==3)begin
                             count2<=0;
-                              led1=0;
+                              led1<=0;
                          end
                      end
                   end 
