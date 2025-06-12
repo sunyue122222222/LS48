@@ -1,0 +1,1087 @@
+$date
+	Sun Jun  8 08:08:38 2025
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module tb_timer_fixed $end
+$var wire 4 ! tens [3:0] $end
+$var wire 1 " point $end
+$var wire 7 # out_xiao [6:0] $end
+$var wire 7 $ out_ge [6:0] $end
+$var wire 1 % led $end
+$var reg 1 & clk_50M $end
+$var reg 1 ' en $end
+$var reg 1 ( key0 $end
+$var reg 1 ) key1 $end
+$var reg 1 * key2 $end
+$var reg 1 + key4 $end
+$var reg 1 , key5 $end
+$var reg 1 - key6 $end
+$var reg 4 . one [3:0] $end
+$var reg 1 / pause $end
+$var reg 1 0 rst $end
+$var reg 1 1 rst_n $end
+$var reg 4 2 ten [3:0] $end
+$scope function seg_to_digit $end
+$var reg 7 3 seg [6:0] $end
+$upscope $end
+$scope module uut $end
+$var wire 1 & clk_50M $end
+$var wire 1 ' en $end
+$var wire 1 ( key0 $end
+$var wire 1 ) key1 $end
+$var wire 1 * key2 $end
+$var wire 1 + key4 $end
+$var wire 1 , key5 $end
+$var wire 1 - key6 $end
+$var wire 4 4 one [3:0] $end
+$var wire 1 / pause $end
+$var wire 1 0 rst $end
+$var wire 1 5 rst_internal $end
+$var wire 1 1 rst_n $end
+$var wire 4 6 ten [3:0] $end
+$var wire 4 7 xiaoshu_internal [3:0] $end
+$var wire 4 8 tens [3:0] $end
+$var wire 1 " point $end
+$var wire 7 9 out_xiao [6:0] $end
+$var wire 7 : out_ge [6:0] $end
+$var wire 4 ; ones_internal [3:0] $end
+$var wire 1 % led $end
+$var wire 1 < clk_4hz $end
+$var wire 1 = clk_2hz $end
+$var wire 1 > clk_1hz $end
+$var wire 1 ? clk_10hz $end
+$scope module u_LS48_ones $end
+$var wire 1 @ A $end
+$var wire 1 A B $end
+$var wire 1 B BI $end
+$var wire 1 C C $end
+$var wire 1 D D $end
+$var wire 1 E LT $end
+$var wire 1 F RBI $end
+$var wire 4 G bcd_input [3:0] $end
+$var reg 1 H RBO $end
+$var reg 1 I out_a $end
+$var reg 1 J out_b $end
+$var reg 1 K out_c $end
+$var reg 1 L out_d $end
+$var reg 1 M out_e $end
+$var reg 1 N out_f $end
+$var reg 1 O out_g $end
+$upscope $end
+$scope module u_LS48_xiaoshu $end
+$var wire 1 P A $end
+$var wire 1 Q B $end
+$var wire 1 R BI $end
+$var wire 1 S C $end
+$var wire 1 T D $end
+$var wire 1 U LT $end
+$var wire 1 V RBI $end
+$var wire 4 W bcd_input [3:0] $end
+$var reg 1 X RBO $end
+$var reg 1 Y out_a $end
+$var reg 1 Z out_b $end
+$var reg 1 [ out_c $end
+$var reg 1 \ out_d $end
+$var reg 1 ] out_e $end
+$var reg 1 ^ out_f $end
+$var reg 1 _ out_g $end
+$upscope $end
+$scope module u_Timer $end
+$var wire 1 ' en $end
+$var wire 1 ( key0 $end
+$var wire 1 ` key0_up $end
+$var wire 1 ) key1 $end
+$var wire 1 a key1_up $end
+$var wire 1 * key2 $end
+$var wire 1 b key2_up $end
+$var wire 1 + key4 $end
+$var wire 1 c key4_up $end
+$var wire 1 , key5 $end
+$var wire 1 d key5_up $end
+$var wire 1 - key6 $end
+$var wire 1 e key6_up $end
+$var wire 1 % led $end
+$var wire 4 f one [3:0] $end
+$var wire 1 / pause $end
+$var wire 1 " point $end
+$var wire 1 g rst_n $end
+$var wire 4 h ten [3:0] $end
+$var wire 4 i tens [3:0] $end
+$var wire 4 j xiaoshu [3:0] $end
+$var wire 1 k selected_clk $end
+$var wire 4 l ones [3:0] $end
+$var wire 1 < cnt_4hz $end
+$var wire 1 = cnt_2hz $end
+$var wire 1 ? cnt_10hz $end
+$var wire 1 > clk_1hz $end
+$var reg 3 m freq_sel [2:0] $end
+$var reg 1 n key0_last $end
+$var reg 1 o key1_last $end
+$var reg 1 p key2_last $end
+$var reg 1 q key4_last $end
+$var reg 1 r key5_last $end
+$var reg 1 s key6_last $end
+$var reg 4 t led_count [3:0] $end
+$var reg 1 u led_reg $end
+$var reg 1 v led_toggle $end
+$var reg 1 w mode $end
+$var reg 4 x ones_reg [3:0] $end
+$var reg 1 y point_reg $end
+$var reg 1 z precision_mode $end
+$var reg 1 { running $end
+$var reg 4 | tens_reg [3:0] $end
+$var reg 4 } xiaoshu_reg [3:0] $end
+$upscope $end
+$scope module u_clk_divider $end
+$var wire 1 & clk_50M $end
+$var wire 1 ~ rst_n $end
+$var reg 1 ? clk_10hz $end
+$var reg 1 > clk_1hz $end
+$var reg 1 = clk_2hz $end
+$var reg 1 < clk_4hz $end
+$var reg 25 !" cnt_10hz [24:0] $end
+$var reg 28 "" cnt_1hz [27:0] $end
+$var reg 27 #" cnt_2hz [26:0] $end
+$var reg 26 $" cnt_4hz [25:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+b0 $"
+b0 #"
+b0 ""
+b0 !"
+0~
+b0 }
+b0 |
+0{
+0z
+0y
+b0 x
+0w
+0v
+0u
+b0 t
+1s
+1r
+1q
+1p
+1o
+1n
+b0 m
+b0 l
+0k
+b0 j
+b0 i
+b1 h
+0g
+b101 f
+0e
+0d
+0c
+0b
+0a
+0`
+1_
+0^
+0]
+0\
+0[
+0Z
+0Y
+1X
+b0 W
+1V
+1U
+0T
+0S
+1R
+0Q
+0P
+1O
+0N
+0M
+0L
+0K
+0J
+0I
+1H
+b0 G
+1F
+1E
+0D
+0C
+1B
+0A
+0@
+0?
+0>
+0=
+0<
+b0 ;
+b1 :
+b1 9
+b0 8
+b0 7
+b1 6
+15
+b101 4
+bx 3
+b1 2
+01
+10
+0/
+b101 .
+1-
+1,
+1+
+1*
+1)
+1(
+0'
+0&
+0%
+b1 $
+b1 #
+0"
+b0 !
+$end
+#10000
+1&
+#20000
+0&
+#30000
+1&
+#40000
+0&
+#50000
+1&
+#60000
+0&
+#70000
+1&
+#80000
+0&
+#90000
+1&
+#100000
+0&
+#110000
+1&
+#120000
+0&
+#130000
+1&
+#140000
+0&
+#150000
+1&
+#160000
+0&
+#170000
+1&
+#180000
+0&
+#190000
+1&
+#200000
+1~
+1g
+05
+0&
+1'
+11
+00
+#210000
+b1 !"
+b1 $"
+b1 #"
+b1 ""
+1&
+#220000
+0&
+#230000
+b10 ""
+b10 #"
+b10 $"
+b10 !"
+1&
+#240000
+0&
+#250000
+1?
+b0 !"
+b11 $"
+b11 #"
+b11 ""
+1&
+#260000
+0&
+#270000
+b100 ""
+b100 #"
+b100 $"
+b1 !"
+1&
+#280000
+0&
+#290000
+b10 !"
+b101 $"
+b101 #"
+b101 ""
+1&
+#300000
+0&
+#310000
+b110 ""
+b110 #"
+1<
+b0 $"
+0?
+b0 !"
+1&
+#320000
+0&
+#330000
+b1 !"
+b1 $"
+b111 #"
+b111 ""
+1&
+#340000
+0&
+#350000
+b1000 ""
+b1000 #"
+b10 $"
+b10 !"
+1&
+#360000
+0&
+#370000
+1?
+b0 !"
+b11 $"
+b1001 #"
+b1001 ""
+1&
+#380000
+0&
+#390000
+b1010 ""
+b1010 #"
+b100 $"
+b1 !"
+1&
+#400000
+0&
+#410000
+b10 !"
+b101 $"
+1=
+b0 #"
+b1011 ""
+1&
+#420000
+0&
+#430000
+b1100 ""
+b1 #"
+0<
+b0 $"
+0?
+b0 !"
+1&
+#440000
+0&
+#450000
+b1 !"
+b1 $"
+b10 #"
+b1101 ""
+1&
+#460000
+0&
+#470000
+b1110 ""
+b11 #"
+b10 $"
+b10 !"
+1&
+#480000
+0&
+#490000
+1?
+b0 !"
+b11 $"
+b100 #"
+b1111 ""
+1&
+#500000
+0&
+#510000
+b10000 ""
+b101 #"
+b100 $"
+b1 !"
+1&
+#520000
+0&
+#530000
+b10 !"
+b101 $"
+b110 #"
+b10001 ""
+1&
+#540000
+0&
+#550000
+b10010 ""
+b111 #"
+1<
+b0 $"
+0?
+b0 !"
+1&
+#560000
+0&
+#570000
+b1 !"
+b1 $"
+b1000 #"
+b10011 ""
+1&
+#580000
+0&
+#590000
+b10100 ""
+b1001 #"
+b10 $"
+b10 !"
+1&
+#600000
+0&
+#610000
+1k
+1?
+b0 !"
+b11 $"
+b1010 #"
+1>
+b0 ""
+1&
+#620000
+0&
+#630000
+b1 ""
+0=
+b0 #"
+b100 $"
+b1 !"
+1&
+#640000
+0&
+#650000
+b10 !"
+b101 $"
+b1 #"
+b10 ""
+1&
+#660000
+0&
+#670000
+b11 ""
+b10 #"
+0<
+b0 $"
+0?
+b0 !"
+1&
+#680000
+0&
+#690000
+b1 !"
+b1 $"
+b11 #"
+b100 ""
+1&
+#700000
+1`
+0&
+0(
+b1 3
+#710000
+b101 ""
+b100 #"
+b10 $"
+b10 !"
+1&
+#720000
+0&
+#730000
+1?
+b0 !"
+b11 $"
+b101 #"
+b110 ""
+1&
+#740000
+0&
+#750000
+b111 ""
+b110 #"
+b100 $"
+b1 !"
+1&
+#760000
+0&
+#770000
+b10 !"
+b101 $"
+b111 #"
+b1000 ""
+1&
+#780000
+0&
+#790000
+b1001 ""
+b1000 #"
+1<
+b0 $"
+0?
+b0 !"
+1&
+#800000
+0`
+0&
+1(
+#810000
+b1 !"
+b1 $"
+b1001 #"
+b1010 ""
+1&
+#820000
+0&
+#830000
+b1011 ""
+b1010 #"
+b10 $"
+b10 !"
+1&
+#840000
+0&
+#850000
+1?
+b0 !"
+b11 $"
+1=
+b0 #"
+b1100 ""
+1&
+#860000
+0&
+#870000
+b1101 ""
+b1 #"
+b100 $"
+b1 !"
+1&
+#880000
+0&
+#890000
+b10 !"
+b101 $"
+b10 #"
+b1110 ""
+1&
+#900000
+0&
+#910000
+b1111 ""
+b11 #"
+0<
+b0 $"
+0?
+b0 !"
+1&
+#920000
+0&
+#930000
+b1 !"
+b1 $"
+b100 #"
+b10000 ""
+1&
+#940000
+0&
+#950000
+b10001 ""
+b101 #"
+b10 $"
+b10 !"
+1&
+#960000
+0&
+#970000
+1?
+b0 !"
+b11 $"
+b110 #"
+b10010 ""
+1&
+#980000
+0&
+#990000
+b10011 ""
+b111 #"
+b100 $"
+b1 !"
+1&
+#1000000
+0&
+#1010000
+b10 !"
+b101 $"
+b1000 #"
+b10100 ""
+1&
+#1020000
+0&
+#1030000
+0k
+0>
+b0 ""
+b1001 #"
+1<
+b0 $"
+0?
+b0 !"
+1&
+#1040000
+0&
+#1050000
+b1 !"
+b1 $"
+b1010 #"
+b1 ""
+1&
+#1060000
+0&
+#1070000
+b10 ""
+0=
+b0 #"
+b10 $"
+b10 !"
+1&
+#1080000
+0&
+#1090000
+1?
+b0 !"
+b11 $"
+b1 #"
+b11 ""
+1&
+#1100000
+0&
+#1110000
+b100 ""
+b10 #"
+b100 $"
+b1 !"
+1&
+#1120000
+0&
+#1130000
+b10 !"
+b101 $"
+b11 #"
+b101 ""
+1&
+#1140000
+0&
+#1150000
+b110 ""
+b100 #"
+0<
+b0 $"
+0?
+b0 !"
+1&
+#1160000
+0&
+#1170000
+b1 !"
+b1 $"
+b101 #"
+b111 ""
+1&
+#1180000
+0&
+#1190000
+b1000 ""
+b110 #"
+b10 $"
+b10 !"
+1&
+#1200000
+0&
+#1210000
+1?
+b0 !"
+b11 $"
+b111 #"
+b1001 ""
+1&
+#1220000
+0&
+#1230000
+b1010 ""
+b1000 #"
+b100 $"
+b1 !"
+1&
+#1240000
+0&
+#1250000
+b10 !"
+b101 $"
+b1001 #"
+b1011 ""
+1&
+#1260000
+0&
+#1270000
+b1100 ""
+b1010 #"
+1<
+b0 $"
+0?
+b0 !"
+1&
+#1280000
+0&
+#1290000
+b1 !"
+b1 $"
+1=
+b0 #"
+b1101 ""
+1&
+#1300000
+0&
+#1310000
+b1110 ""
+b1 #"
+b10 $"
+b10 !"
+1&
+#1320000
+0&
+#1330000
+1?
+b0 !"
+b11 $"
+b10 #"
+b1111 ""
+1&
+#1340000
+0&
+#1350000
+b10000 ""
+b11 #"
+b100 $"
+b1 !"
+1&
+#1360000
+0&
+#1370000
+b10 !"
+b101 $"
+b100 #"
+b10001 ""
+1&
+#1380000
+0&
+#1390000
+b10010 ""
+b101 #"
+0<
+b0 $"
+0?
+b0 !"
+1&
+#1400000
+0&
+#1410000
+b1 !"
+b1 $"
+b110 #"
+b10011 ""
+1&
+#1420000
+0&
+#1430000
+b10100 ""
+b111 #"
+b10 $"
+b10 !"
+1&
+#1440000
+0&
+#1450000
+1k
+1?
+b0 !"
+b11 $"
+b1000 #"
+1>
+b0 ""
+1&
+#1460000
+0&
+#1470000
+b1 ""
+b1001 #"
+b100 $"
+b1 !"
+1&
+#1480000
+0&
+#1490000
+b10 !"
+b101 $"
+b1010 #"
+b10 ""
+1&
+#1500000
+0&
+#1510000
+b11 ""
+0=
+b0 #"
+1<
+b0 $"
+0?
+b0 !"
+1&
+#1520000
+0&
+#1530000
+b1 !"
+b1 $"
+b1 #"
+b100 ""
+1&
+#1540000
+0&
+#1550000
+b101 ""
+b10 #"
+b10 $"
+b10 !"
+1&
+#1560000
+0&
+#1570000
+1?
+b0 !"
+b11 $"
+b11 #"
+b110 ""
+1&
+#1580000
+0&
+#1590000
+b111 ""
+b100 #"
+b100 $"
+b1 !"
+1&
+#1600000
+0&
+#1610000
+b10 !"
+b101 $"
+b101 #"
+b1000 ""
+1&
+#1620000
+0&
+#1630000
+b1001 ""
+b110 #"
+0<
+b0 $"
+0?
+b0 !"
+1&
+#1640000
+0&
+#1650000
+b1 !"
+b1 $"
+b111 #"
+b1010 ""
+1&
+#1660000
+0&
+#1670000
+b1011 ""
+b1000 #"
+b10 $"
+b10 !"
+1&
+#1680000
+0&
+#1690000
+1?
+b0 !"
+b11 $"
+b1001 #"
+b1100 ""
+1&
+#1700000
+0&
+#1710000
+b1101 ""
+b1010 #"
+b100 $"
+b1 !"
+1&
+#1720000
+0&
+#1730000
+b10 !"
+b101 $"
+1=
+b0 #"
+b1110 ""
+1&
+#1740000
+0&
+#1750000
+b1111 ""
+b1 #"
+1<
+b0 $"
+0?
+b0 !"
+1&
+#1760000
+0&
+#1770000
+b1 !"
+b1 $"
+b10 #"
+b10000 ""
+1&
+#1780000
+0&
+#1790000
+b10001 ""
+b11 #"
+b10 $"
+b10 !"
+1&
+#1800000
+0&
+#1810000
+1?
+b0 !"
+b11 $"
+b100 #"
+b10010 ""
+1&
+#1820000
+0&
+#1830000
+b10011 ""
+b101 #"
+b100 $"
+b1 !"
+1&
+#1840000
+0&
+#1850000
+b10 !"
+b101 $"
+b110 #"
+b10100 ""
+1&
+#1860000
+0&
+#1870000
+0k
+0>
+b0 ""
+b111 #"
+0<
+b0 $"
+0?
+b0 !"
+1&
+#1880000
+0&
+#1890000
+b1 !"
+b1 $"
+b1000 #"
+b1 ""
+1&
+#1900000
+0&
+#1910000
+b10 ""
+b1001 #"
+b10 $"
+b10 !"
+1&
+#1920000
+0&
+#1930000
+1?
+b0 !"
+b11 $"
+b1010 #"
+b11 ""
+1&
+#1940000
+0&
+#1950000
+b100 ""
+0=
+b0 #"
+b100 $"
+b1 !"
+1&
+#1960000
+0&
+#1970000
+b10 !"
+b101 $"
+b1 #"
+b101 ""
+1&
+#1980000
+0&
+#1990000
+b110 ""
+b10 #"
+1<
+b0 $"
+0?
+b0 !"
+1&
+#2000000
+0&

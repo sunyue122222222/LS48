@@ -19,8 +19,6 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-`timescale 1ns / 1ps
-
 module tb_clk_divider();
 
 // 输入信号
@@ -33,8 +31,8 @@ wire clk_2hz;
 wire clk_4hz;
 wire clk_10hz;
 
-// 实例化被测模块
-clk_divider uut (
+// 实例化被测模块（使用仿真模式）
+clk_divider #(.SIM_MODE(1)) uut (
     .clk_50M(clk_50M),
     .rst_n(rst_n),
     .clk_1hz(clk_1hz),

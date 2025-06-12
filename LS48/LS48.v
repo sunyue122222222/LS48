@@ -5,18 +5,68 @@
 // 
 // Create Date: 2025/05/12 21:59:46
 // Design Name: 
-// Module Name: LS48tb
+// Module Name: LS48
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
-// Description: 
+// Description: LS48 BCD to 7-segment decoder
 // 
 // Dependencies: 
 // 
 // Revision:
 // Revision 0.01 - File Created
-`timescale 1ns / 1ps
+//////////////////////////////////////////////////////////////////////////////////
 
+// LS48 BCD to 7-segment decoder module
+module LS48 (
+    input wire D, C, B, A,    // BCD输入 (4位)
+    input wire BI,            // 消隐输入 (低电平有效)
+    input wire LT,            // 灯测试输入 (低电平有效)
+    input wire RBI,           // 灭零输入 (低电平有效)
+    output reg RBO,           // 灭零输出 (低电平有效)
+    output reg out_a, out_b, out_c, out_d, out_e, out_f, out_g  // 七段输出 (低电平有效)
+);
+
+    wire [3:0] bcd_input = {D, C, B, A};
+    
+    always @(*) begin
+        // 默认值
+        RBO = 1'b1;
+        
+        // 灯测试功能 (LT=0时所有段点亮)
+        if (!LT) begin
+            {out_a, out_b, out_c, out_d, out_e, out_f, out_g} = 7'b0000000;
+        end
+        // 消隐功能 (BI=0时所有段熄灭)
+        else if (!BI) begin
+            {out_a, out_b, out_c, out_d, out_e, out_f, out_g} = 7'b1111111;
+        end
+        // 灭零功能 (RBI=0且输入为0时所有段熄灭)
+        else if (!RBI && bcd_input == 4'b0000) begin
+            {out_a, out_b, out_c, out_d, out_e, out_f, out_g} = 7'b1111111;
+            RBO = 1'b0;  // 输出灭零信号
+        end
+        // 正常译码功能
+        else begin
+            case (bcd_input)
+                4'b0000: {out_a, out_b, out_c, out_d, out_e, out_f, out_g} = 7'b0000001; // 0
+                4'b0001: {out_a, out_b, out_c, out_d, out_e, out_f, out_g} = 7'b1001111; // 1
+                4'b0010: {out_a, out_b, out_c, out_d, out_e, out_f, out_g} = 7'b0010010; // 2
+                4'b0011: {out_a, out_b, out_c, out_d, out_e, out_f, out_g} = 7'b0000110; // 3
+                4'b0100: {out_a, out_b, out_c, out_d, out_e, out_f, out_g} = 7'b1001100; // 4
+                4'b0101: {out_a, out_b, out_c, out_d, out_e, out_f, out_g} = 7'b0100100; // 5
+                4'b0110: {out_a, out_b, out_c, out_d, out_e, out_f, out_g} = 7'b0100000; // 6
+                4'b0111: {out_a, out_b, out_c, out_d, out_e, out_f, out_g} = 7'b0001111; // 7
+                4'b1000: {out_a, out_b, out_c, out_d, out_e, out_f, out_g} = 7'b0000000; // 8
+                4'b1001: {out_a, out_b, out_c, out_d, out_e, out_f, out_g} = 7'b0000100; // 9
+                default: {out_a, out_b, out_c, out_d, out_e, out_f, out_g} = 7'b1111111; // 无效输入，全部熄灭
+            endcase
+        end
+    end
+
+endmodule
+
+// 测试台模块
 module tb_LS48;
 
     // 信号声明
